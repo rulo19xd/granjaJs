@@ -13,33 +13,183 @@ function mostrarMensaje (mensaje) {
     alert(mensaje);
 }
 
+function datosNoCargados (dato) {
+    alert ('Has ingresado incorrectamente el ' + dato + ', ingrese un ' + dato + ' válido.')
+}
+
 function pedirDatos(num) {
 
+let animal = "";
+let nombre = "";
+let color = "";
 
-    mostrarMensaje ('Ingresar datos del animal N°' + num);
- let animal = prompt ('Ingrese la especie del animal N°' + num);
- let nombre = prompt ('Ingrese el nombre del animal N°' + num);
- let color = prompt ('Ingrese el color del animal N°' + num);
+
+    mostrarMensaje ('Ingresar datos del animal N°' + num + '.');
+
+    while (animal == "") { 
+   animal = prompt ('Ingrese la especie del animal N°' + num + '.');
+     if (animal == "") {
+        datosNoCargados ('animal')
+     }
+    }
+
+    while (nombre == "") {  
+   nombre = prompt ('Ingrese el nombre del animal N°' + num + '.' );
+     if (nombre == "") {
+        datosNoCargados ('nombre')
+     }
+    }
+
+    while (color == "") { 
+   color = prompt ('Ingrese el color del animal N°' + num + '.');
+   if (color == "") {
+    datosNoCargados ('color')
+     } else {
+        mostrarMensaje ('Has ingresado correctamente los datos del animal ' + num + '.')
+     }
+    }
 
 
     let objeto = {
-        animal:animal,
-        nombre:nombre,
-        color:color
+        animal : animal,
+        nombre : nombre,
+        color : color,
+        
+        edad : 0,
+        vive : true,
+        diasComer : 0,
+        numero : num
+
     }
 
     return objeto;
 }
-function tirarDado () {
-    
+
+function comer () {
+   let rand = math.floor(math.random() * 5) + 1;
+
+   return rand
 }
 
+function ahogarse (num) {
+    var probabilidad = Math.random();
+    var probAhogarse = 0.03;
+
+    if (probabilidad < probAhogarse) {
+      return false
+    } else {
+      return true
+    }
+}
+
+
 //~~~~~~~~~~~Objetos~~~~~~~~~~~~~
+
+
 let animal1 = pedirDatos (1)
 let animal2 = pedirDatos (2)
 let animal3 = pedirDatos (3)
 let animal4 = pedirDatos (4)
 let animal5 = pedirDatos (5)
+
+
+//~~~~~~~~~~Codigo~~~~~~~~~~~
+
+let continuar = confirm ('¿Comenzamos el juego?')
+while (animal1.vive == true || animal2.vive == true || animal3.vive == true || animal4 == true || animal5 == true) {
+
+  comida = comer ()
+  comida2 = comer ()
+
+  if (animal1.num == comida || animal1.num == comida2) {
+    muere = ahogarse ()
+    animal1.vive = muere
+    if (animal1.vive == true) {
+        animal1.edad++
+        animal1.diasComer = 0;
+    }
+  } else {
+    animal1.diasComer++
+  }
+
+
+  if (animal2.num == comida || animal2.num == comida2) {
+    muere = ahogarse ()
+    animal2.vive = muere
+    if (animal2.vive == true) {
+        animal2.edad++
+        animal2.diasComer = 0;
+    }
+  } else {
+    if (animal2.vive == true) {
+        animal2.diasComer++
+    }
+  }
+
+
+  if (animal3.num == comida || animal3.num == comida2) {
+    muere = ahogarse ()
+    animal3.vive = muere
+    if (animal3.vive == true) {
+        animal3.diasComer = 0;
+        animal3.edad++
+    }
+  } else {
+    if (animal3.vive == true) {
+        animal3.diasComer++
+    }
+  }
+
+
+  if (animal4.num == comida || animal4.num == comida2) {
+    muere = ahogarse ()
+    animal4.vive = muere
+    if (animal5.vive == true) {
+        animal4.diasComer = 0;
+        animal4.edad++
+    }
+  } else {
+    if (animal4.vive == true) {
+        animal4.diasComer++
+    }
+  }
+
+
+  if (animal5.num == comida || animal5.num == comida2) {
+    muere = ahogarse ()
+    animal5.vive = muere
+    if (animal5.vive == true) {
+        animal5.diasComer = 0;
+        animal5.edad++
+    }
+  } else {
+    if (animal5.vive == true) {
+        animal5.diasComer++
+    }
+  }
+
+
+  if (animal1.diasComer == 3){
+    animal1.vive = false
+  }
+  if (animal2.diasComer == 3){
+    animal2.vive = false
+  }
+  if (animal3.diasComer == 3){
+    animal3.vive = false
+  }
+  if (animal4.diasComer == 3){
+    animal4.vive = false
+  }
+  if (animal5.diasComer == 3){
+    animal5.vive = false
+  }
+
+
+}
+
+
+
 
 
 
